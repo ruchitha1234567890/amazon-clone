@@ -1,0 +1,150 @@
+1 . Write a program in assembly language to display a two-digit number
+
+On the screen. The two-digits number is required to be taken in the
+
+Program itself.
+
+Code:
+
+ORG 100h ; Origin, to specify that the program starts at
+
+100h (COM file format)
+
+; Display the message “The two-digit number is: “
+
+MOV AH, 09h ; Function 09h of INT 21h prints a string
+
+MOV DX, OFFSET msg_output ; Load the offset of the output
+
+Message into DX
+
+INT 21h ; Call DOS interrupt to print the message
+
+; Display the first digit
+
+MOV DL, ‘4’ ; Load the first digit (‘4’) into DL
+
+MOV AH, 02h ; Function 02h of INT 21h to print a character
+
+INT 21h ; Print the first digit
+
+; Display the second digit
+
+MOV DL, ‘2’ ; Load the second digit (‘2’) into DL
+
+MOV AH, 02h ; Function 02h of INT 21h to print a character
+
+INT 21h ; Print the second digit
+
+; Terminate the program
+
+MOV AH, 4Ch ; Function 4Ch of INT 21h terminates the
+
+Program
+
+INT 21h ; Call DOS interrupt to exit
+
+; Data section with messages
+
+Msg_output DB 0Dh, 0Ah, ‘The two-digit number is: $’ ; Output
+
+Message with newline (CRLF)
+
+
+
+
+
+
+2. Write an assembly language program to take two single-digit integers
+
+From the user and print the result of addition on the screen.
+
+Code:
+
+ORG 100h
+
+; Display the message “Enter the first digit: “
+
+MOV DX, OFFSET msg_input1
+
+MOV AH, 09h
+
+INT 21h
+
+; Read the first digit from the user
+
+MOV AH, 01h
+
+INT 21h
+
+SUB AL, ‘0’ ; Convert ASCII to integer
+
+MOV BL, AL ; Store the first digit in BL
+
+; Display the message “Enter the second digit: “
+
+MOV DX, OFFSET msg_input2
+
+MOV AH, 09h
+
+INT 21h
+; Read the second digit from the user
+
+MOV AH, 01h
+
+INT 21h
+
+SUB AL, ‘0’ ; Convert ASCII to integer
+
+MOV CL, AL ; Store the second digit in CL
+
+; Perform addition
+
+ADD BL, CL ; Add the two digits, result in BL
+
+; Convert the result back to ASCII
+
+ADD BL, ‘0’ ; Convert the sum to ASCII
+
+; Display the message “The result of addition is: “
+
+MOV DX, OFFSET msg_output
+
+MOV AH, 09h
+
+INT 21h
+
+; Print the result
+
+MOV DL, BL
+
+MOV AH, 02h
+
+INT 21h
+
+; Print a new line (CRLF)
+
+MOV DL, 0Dh
+
+MOV AH, 02h
+INT 21h
+
+MOV DL, 0Ah
+
+INT 21h
+
+; Terminate the program
+
+MOV AH, 4Ch
+
+INT 21h
+
+; Data section with messages
+
+Msg_input1 DB ‘Enter the first digit: $’
+
+Msg_input2 DB 0Dh, 0Ah, ‘Enter the second digit: $’
+
+Msg_output DB 0Dh, 0Ah, ‘The result of addition is: $’
+
+END
