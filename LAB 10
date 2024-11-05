@@ -1,0 +1,53 @@
+1
+org 100h
+mov cx, 10
+mov bl, '0'
+print_loop:
+mov ah, 02h
+mov dl, bl
+int 21h
+inc bl
+loop print_loop
+mov ah, 4Ch
+int 21h
+
+
+2
+org 100h
+mov cx, 26
+mov bl, 'Z'
+print_loop:
+mov ah, 02h
+mov dl, bl
+int 21h
+dec bl
+loop print_loop
+mov ah, 4Ch
+int 21h
+
+
+3
+org 100h
+mov cx, 10
+mov bl, '9'
+print_loop:
+mov ah, 02h
+mov dl, bl
+int 21h
+dec bl
+loop print_loop
+mov ah, 4Ch
+int 21h
+
+4
+org 100h
+mov cx, 26
+mov bl, 'A'
+print_loop:
+mov ah, 02h
+mov dl, bl
+int 21h
+inc bl
+loop print_loop
+mov ah, 4Ch
+int 21h
